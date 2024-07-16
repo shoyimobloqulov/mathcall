@@ -1,0 +1,85 @@
+<!-- calculate_and_plot_chartjs.html -->
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Results of Concentration Calculation
+{% endblock %}
+
+{% block extra_head %}
+<style>
+    .chart-container {
+        position: relative;
+        margin: auto;
+        height: 80vh;
+        width: 80vw;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Results of Concentration Calculation</h1>
+    <div class="chart-container">
+        <canvas id="concentrationChart"></canvas>
+    </div>
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">Go to Home</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('concentrationChart').getContext('2d');
+        var x_values = JSON.parse('{{ x_values|escapejs }}');
+        var Cm_data = JSON.parse('{{ Cm_data|escapejs }}');
+        var Cim_data = JSON.parse('{{ Cim_data|escapejs }}');
+
+        var concentrationChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: x_values,
+                datasets: [{
+                    label: 'Cm',
+                    data: Cm_data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2
+                }, {
+                    label: 'Cim',
+                    data: Cim_data,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'X koordinata (m)',
+                            fontSize: 14
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Kontsentratsiya (kg/m^3)',
+                            fontSize: 14
+                        }
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Cm va Cim ning X koordinata bo\'yicha taqsimoti',
+                    fontSize: 16
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

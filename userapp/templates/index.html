@@ -1,0 +1,19 @@
+<!-- home/templates/home/index.html -->
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Домашняя страница
+{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h1 class="text-center display-8"> ПРОГРАММНО – ВЫЧИСЛИТЕЛЬНАЯ СРЕДА ПО РАСЧЕТУ АНОМАЛЬНОГО ПЕРЕНОСА ВЕЩЕСТВА В ПОРИСТЫХ СРЕДАХ</h1>
+    <div class="my-3">
+        {% load static %}
+        <img src="{% static 'admin/img/fvol.svg' %}" alt="header image not found">
+    </div>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-primary btn-lg mb-5" href="/selects/" role="button">НАЧАТЬ </a>
+    </div> 
+</div>
+{% endblock %}

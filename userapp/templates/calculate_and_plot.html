@@ -1,0 +1,400 @@
+<!-- calculate_and_plot.html -->
+{% extends 'layout/base.html' %}
+
+{% block title %}
+АЛГОРИТМИЗАЦИЯ РАСЧЕТОВ ПОКАЗАТЕЛЕЙ ПЕРЕНОСА ВЕЩЕСТВ
+{% endblock %}
+
+{% block content %}
+<div id="loader" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="h1Container">
+
+        <div class="cube h1 w1 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h1 w1 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h1 w1 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h1 w2 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h1 w2 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h1 w2 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h1 w3 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h1 w3 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h1 w3 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+    </div>
+
+    <div class="h2Container">
+
+        <div class="cube h2 w1 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h2 w1 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h2 w1 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h2 w2 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h2 w2 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h2 w2 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h2 w3 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h2 w3 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h2 w3 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+    </div>
+
+    <div class="h3Container">
+
+        <div class="cube h3 w1 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h3 w1 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h3 w1 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h3 w2 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h3 w2 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h3 w2 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h3 w3 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h3 w3 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+
+        <div class="cube h3 w3 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+        </div>
+    </div>
+</div>
+
+<div id="content" style="display: none;">
+    <div class="row m-2">
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-header">Cm ning X koordinata bo'yicha taqsimoti</h3>
+                <div class="card-body">
+                    <canvas id="CmChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-header">Cim ning X koordinata bo'yicha taqsimoti</h3>
+                <div class="card-body">
+                    <canvas id="CimChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <hr class="m-1">
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-header">Cm ning vaqt bo'yicha dinamikasi</h3>
+                <div class="card-body">
+                    <canvas id="CmTimeChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-header">Cim ning vaqt bo'yicha dinamikasi</h3>
+                <div class="card-body">
+                    <canvas id="CimTimeChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // API endpoint
+        const apiUrl = '/api/result-chart/';
+
+        // Fetch data from the API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Process the data and create charts
+
+                var ctx = document.getElementById('CmChart').getContext('2d');
+                var CmChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.x,
+                        datasets: [{
+                            label: `Cm (t=${data.tmax} s)`,
+                            data: data.Cm_tmax,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }, {
+                            label: `Cm (t=${2 * data.tmax / 3} s)`,
+                            data: data.Cm_2tmax3,
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            backgroundColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }, {
+                            label: `Cm (t=${data.tmax / 3} s)`,
+                            data: data.Cm_tmax3,
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            backgroundColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                var ctx2 = document.getElementById('CimChart').getContext('2d');
+                var CimChart = new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: data.x,
+                        datasets: [{
+                            label: `Cim (t=${data.tmax} s)`,
+                            data: data.Cim_tmax,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }, {
+                            label: `Cim (t=${2 * data.tmax / 3} s)`,
+                            data: data.Cim_2tmax3,
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            backgroundColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }, {
+                            label: `Cim (t=${data.tmax / 3} s)`,
+                            data: data.Cim_tmax3,
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            backgroundColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                var ctx3 = document.getElementById('CmTimeChart').getContext('2d');
+                var CmTimeChart = new Chart(ctx3, {     
+                    type: 'line',
+                    data: {
+                        labels: data.y,
+                        datasets: [{
+                            label: 'Cm (x=0.1 m)',
+                            data: data.Cm2,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 0.2,
+                            fill: false
+                        }, {
+                            label: 'Cm (x=0.3 m)',
+                            data: data.Cm3,
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            backgroundColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 0.2,
+                            fill: false
+                        }, {
+                            label: 'Cm (x=0.5 m)',
+                            data: data.Cm4,
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            backgroundColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 0.2,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                var ctx4 = document.getElementById('CimTimeChart').getContext('2d');
+                var CimTimeChart = new Chart(ctx4, {
+                    type: 'line',
+                    data: {
+                        labels: data.y,
+                        datasets: [{
+                            label: 'Cim (x=0.1 m)',
+                            data: data.Cim2,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }, {
+                            label: 'Cim (x=0.3 m)',
+                            data: data.Cim3,
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            backgroundColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }, {
+                            label: 'Cim (x=0.5 m)',
+                            data: data.Cim4,
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            backgroundColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                document.getElementById('loader').classList.add('hide-important');
+                document.getElementById('content').classList.add('show-important');
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    });
+</script>
+{% endblock %}
