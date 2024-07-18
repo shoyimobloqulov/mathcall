@@ -126,8 +126,8 @@ def answer(request):
     context = {'description': description, 'item_id': item_id}
     return HttpResponse(template.render(context, request))
 def calculate_and_plot(request):
-    # O'zgarmaslarni kiritish
-    return render(request, 'calculate_and_plot.html')
+    data = json.dumps(request.GET)
+    return render(request, "calculate_and_plot.html", {"data": data})
 
 def export_csv(request, filename):
     Cm = np.array(request.GET.get('Cm').split(','), dtype=float)
@@ -139,23 +139,31 @@ def export_csv(request, filename):
     response['Content-Disposition'] = f'attachment; filename={filename}.csv'
     return response
 
-def functiondata(request):
-    C0 = 0.1
-    vm = 1e-4
-    Dm = 1e-5
-    n = 20
-    tau = 1
-    h = 0.1
-    tmax = 2700
-    w = 1e-6
-    tetim = 0.1
-    tetm = 0.4
-    gam = 0.06
-    tet = tetim / tetm
-    alpha = 0.9
-    bet = 2
-    A = 1 + (w * gamma(2 - alpha) * tau**alpha) / (gam * tetim)
+def functiondata(request,item_id):
+    print(request,item_id)
+    if int(item_id) == 1:
+        C0 = 0.1
+        vm = 1e-4
+        Dm = 1e-5
+        n = 20
+        tau = 1
+        h = 0.1
+        tmax = 2700
+        w = 1e-6
+        tetim = 0.1
+        tetm = 0.4
+        gam = 0.06
+        alpha = 0.9
+        bet = 2
+        return datafunctionone(C0,vm,Dm,n,tau,h,tmax,w,tetim,tetm,gam,alpha,bet)
+    
+def about(request): 
+    return render(request, 'about.html')
 
+def datafunctionone(C0,vm,Dm,n,tau,h,tmax,w,tetim,tetm,gam,alpha,bet):
+    tet = tetim / tetm
+
+    A = 1 + (w * gamma(2 - alpha) * tau**alpha) / (gam * tetim)
     # Boshlang'ich shartlar
     Cm = np.zeros((tmax + 1, n + 1))
     Cim = np.zeros((tmax + 1, n + 1))

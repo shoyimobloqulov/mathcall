@@ -1,0 +1,48 @@
+<!-- home/templates/home/index.html -->
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Домашняя страница
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <p>
+        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Название программы:</b> Программно – вычислительная среда по
+        расчету аномального переноса вещества в пористых
+        средах
+        <br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Авторские права:</b> В Государственном реестре
+        программных продуктов Республики Узбекистан создан на
+        основании сертификатов № DGU 38241,
+        № DGU 38241, зарегистрированных 18.05.2024.
+    </p>
+
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Программа создана на кафедре «Математическое моделирование»
+        Самаркандского государственного университета имени Шарофа Рашидова.</p>
+
+    <h3 class="text-center">
+        Авторы программы:
+    </h3>
+
+    <div class="d-flex justify-content-center mx-auto text-center">
+        <div class="card m-1" style="width: 18rem;">
+            {% load static %}
+            <img class="card-img-top" style="height: 290px;" src="{% static 'image1.png' %}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Хужаёров Бахтиёр – доктор физико-математических наук, профессор</h5>
+            </div>
+        </div>
+        <div class="card m-1" style="width: 18rem;">
+            {% load static %}
+            <img class="card-img-top" style="height: 290px;" src="{% static 'image2.png' %}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Холлиев Фахриддин Боходирович – базовым докторантом </h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="float-right">
+        <i>Программа создана с использованием языка
+            программирования Python и фреймворка Django</i></div>
+</div>
+{% endblock %}

@@ -221,11 +221,12 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // API endpoint
-        const apiUrl = '/api/result-chart/';
+        const params = new URLSearchParams('{{ data }}');
+
+        const apiUrl = '/api/result-chart/1?'+params.toString();
 
         // Fetch data from the API
-        fetch(apiUrl)
-            .then(response => response.json())
+        fetch(apiUrl).then(response => response.json())
             .then(data => {
                 // Process the data and create charts
 
@@ -310,7 +311,7 @@
                 });
 
                 var ctx3 = document.getElementById('CmTimeChart').getContext('2d');
-                var CmTimeChart = new Chart(ctx3, {     
+                var CmTimeChart = new Chart(ctx3, {
                     type: 'line',
                     data: {
                         labels: data.y,

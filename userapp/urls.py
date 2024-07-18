@@ -10,5 +10,6 @@ urlpatterns = [
     path('export_csv/<str:filename>/', views.export_csv, name='export_csv'),
 
 
-    path('api/result-chart/', views.functiondata, name='functionData'),
+    path('api/result-chart/<str:item_id>', views.functiondata, name='functionData'),
+    path('about', views.about, name='about'),
 ]
