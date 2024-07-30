@@ -1,0 +1,178 @@
+<!-- chart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div>
+        <canvas id="cmChart" width="400" height="200"></canvas>
+    </div>
+    <div>
+        <canvas id="cimChart" width="400" height="200"></canvas>
+    </div>
+    <div>
+        <canvas id="cmDynamicChart" width="400" height="200"></canvas>
+    </div>
+    <div>
+        <canvas id="cimDynamicChart" width="400" height="200"></canvas>
+    </div>
+    <script>
+        async function fetchData() {
+            const response = await fetch('/chart-data/');
+            const data = await response.json();
+            return data;
+        }
+
+        async function createCharts() {
+            const data = await fetchData();
+
+            const cmCtx = document.getElementById('cmChart').getContext('2d');
+            const cimCtx = document.getElementById('cimChart').getContext('2d');
+            const cmDynamicCtx = document.getElementById('cmDynamicChart').getContext('2d');
+            const cimDynamicCtx = document.getElementById('cimDynamicChart').getContext('2d');
+
+            new Chart(cmCtx, {
+                type: 'line',
+                data: {
+                    labels: data.x,
+                    datasets: [
+                        {
+                            label: `Cm(t=${data.y[data.y.length-1]} s)`,
+                            data: data.Cm[data.y.length-1],
+                            borderColor: 'blue',
+                            fill: false
+                        },
+                        {
+                            label: `Cm(t=${data.y[2*data.y.length/3]} s)`,
+                            data: data.Cm[2*data.y.length/3],
+                            borderColor: 'red',
+                            fill: false
+                        },
+                        {
+                            label: `Cm(t=${data.y[data.y.length/3]} s)`,
+                            data: data.Cm[data.y.length/3],
+                            borderColor: 'green',
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'X koordinata (m)' } },
+                        y: { title: { display: true, text: 'Kontsentratsiya (m^3/m^3)' } }
+                    }
+                }
+            });
+
+            new Chart(cimCtx, {
+                type: 'line',
+                data: {
+                    labels: data.x,
+                    datasets: [
+                        {
+                            label: `Cim(t=${data.y[data.y.length-1]} s)`,
+                            data: data.Cim[data.y.length-1],
+                            borderColor: 'blue',
+                            fill: false
+                        },
+                        {
+                            label: `Cim(t=${data.y[2*data.y.length/3]} s)`,
+                            data: data.Cim[2*data.y.length/3],
+                            borderColor: 'red',
+                            fill: false
+                        },
+                        {
+                            label: `Cim(t=${data.y[data.y.length/3]} s)`,
+                            data: data.Cim[data.y.length/3],
+                            borderColor: 'green',
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'X koordinata (m)' } },
+                        y: { title: { display: true, text: 'Kontsentratsiya (m^3/m^3)' } }
+                    }
+                }
+            });
+
+            new Chart(cmDynamicCtx, {
+                type: 'line',
+                data: {
+                    labels: data.y,
+                    datasets: [
+                        {
+                            label: 'Cm (x=0.1 m)',
+                            data: data.Cm2,
+                            borderColor: 'blue',
+                            fill: false
+                        },
+                        {
+                            label: 'Cm (x=0.3 m)',
+                            data: data.Cm3,
+                            borderColor: 'red',
+                            fill: false
+                        },
+                        {
+                            label: 'Cm (x=0.5 m)',
+                            data: data.Cm4,
+                            borderColor: 'green',
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'Vaqt (s)' } },
+                        y: { title: { display: true, text: 'Cm kontsentratsiyasi (m^3/m^3)' } }
+                    }
+                }
+            });
+
+            new Chart(cimDynamicCtx, {
+                type: 'line',
+                data: {
+                    labels: data.y,
+                    datasets: [
+                        {
+                            label: 'Cim (x=0.1 m)',
+                            data: data.Cim2,
+                            borderColor: 'blue',
+                            fill: false
+                        },
+                        {
+                            label: 'Cim (x=0.3 m)',
+                            data: data.Cim3,
+                            borderColor: 'red',
+                            fill: false
+                        },
+                        {
+                            label: 'Cim (x=0.5 m)',
+                            data: data.Cim4,
+                            borderColor: 'green',
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'Vaqt (s)' } },
+                        y: { title: { display: true, text: 'Cim kontsentratsiyasi (m^3/m^3)' } }
+                    }
+                }
+            });
+        }
+
+        createCharts();
+    </script>
+</body>
+</html>
