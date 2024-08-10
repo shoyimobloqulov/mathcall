@@ -14,7 +14,6 @@ from django.http import HttpResponse # type: ignore
 from .forms import CalculationForm, SimulationForm
 import csv
 from io import BytesIO
-import base64
 from .tasks import perform_calculation
 from django.http import JsonResponse # type: ignore
 from scipy.special import gamma # type: ignore
