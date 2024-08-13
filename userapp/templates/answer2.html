@@ -229,15 +229,7 @@
                 </div>
             </div>
         </div>
-        <hr class="m-1">
-        <div class="col-md-6">
-            <div class="card">
-                <h3 class="card-header">C ning vaqt bo'yicha dinamikasi</h3>
-                <div class="card-body">
-                    <canvas id="exportChart"></canvas>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
 
@@ -353,40 +345,6 @@
                         tension: 0.1
                     }
                 ]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Vaqt (s)'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Kontsentratsiya (m^3/m^3)'
-                        }
-                    }
-                }
-            }
-        });
-
-        // 3. Oxirgi ustunni eksport qilish diagrammasi
-        const lastColumnData = C.map(row => row[row.length - 1]).reverse();
-        const exportCtx = document.getElementById('exportChart').getContext('2d');
-        new Chart(exportCtx, {
-            type: 'bar',
-            data: {
-                labels: y,
-                datasets: [{
-                    label: 'Oxirgi ustun (tmax)',
-                    data: lastColumnData,
-                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
-                    borderColor: 'rgba(0, 123, 255, 1)',
-                    borderWidth: 1
-                }]
             },
             options: {
                 responsive: true,
