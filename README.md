@@ -14,4 +14,4 @@ Once `pip` has finished downloading the dependencies:
 ```
 
 
-## Public link: <a href="mathmodel.uz">mathmodel.uz</a>
+## Public link: <a href="https://www.mathmodel.uz">mathmodel.uz</a>
