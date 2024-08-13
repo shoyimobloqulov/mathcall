@@ -12,3 +12,6 @@ Once `pip` has finished downloading the dependencies:
  cd project
  python manage.py runserver
 ```
+
+
+## Public link: <a href="mathmodel.uz">mathmodel.uz</a>
