@@ -8,5 +8,7 @@ urlpatterns = [
     path('export_csv/<str:filename>/', views.export_csv, name='export_csv'),
     path('about', views.about, name='about'),
     path('calculate/', views.calculate, name='calculate'),
-    path('result/',views.result,name='result')
+    path('result/',views.result,name='result'),
+    path('api',views.api,name='api'),
+    path('published-works', views.published_works_list, name='published_works_list'),
 ]

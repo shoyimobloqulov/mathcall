@@ -1,0 +1,19 @@
+<!-- home/templates/home/index.html -->
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Домашняя страница
+{% endblock %}
+
+{% block content %}
+<h1>Список опубликованных работ</h1>
+<div class="row container mx-auto">
+    {% for work in works %}
+    <div class="col-3 p-1">
+        <h5>{{ work.name }}</h3>
+        <p><code>{{work.type }}</code></p>
+        <a href="/static/{{ work.url}}" download="" class="btn btn-outline-primary">Скачать</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

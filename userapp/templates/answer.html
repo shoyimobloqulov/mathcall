@@ -33,173 +33,177 @@
         </div>
     </form>
 </div>
-
+<div class="loader p-2 m-2" style="position: relative;">
+    <p>Результаты программы будут объявлены в ближайшее время, пожалуйста, подождите, примерное время ожидания: <span id="vall"></span> минута</p>
+</div>
 <div class="loader">
+
     <div id="loader" class="d-flex justify-content-center align-items-center" style="height: 100vh;display: none;">
+
         <div class="h1Container">
-    
+
             <div class="cube h1 w1 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h1 w1 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h1 w1 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h1 w2 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h1 w2 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h1 w2 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h1 w3 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h1 w3 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h1 w3 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
         </div>
-    
+
         <div class="h2Container">
-    
+
             <div class="cube h2 w1 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h2 w1 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h2 w1 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h2 w2 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h2 w2 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h2 w2 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h2 w3 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h2 w3 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h2 w3 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
         </div>
-    
+
         <div class="h3Container">
-    
+
             <div class="cube h3 w1 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h3 w1 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h3 w1 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h3 w2 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h3 w2 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h3 w2 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h3 w3 l1">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h3 w3 l2">
                 <div class="face top"></div>
                 <div class="face left"></div>
                 <div class="face right"></div>
             </div>
-    
+
             <div class="cube h3 w3 l3">
                 <div class="face top"></div>
                 <div class="face left"></div>
@@ -252,11 +256,15 @@
 <script>
     $("#content").hide();
     $(".loader").hide();
+
     function submitData() {
 
         const data = $("#parametersForm").serialize();
         $(".loader").show();
         $("#form").hide();
+
+        const varr = $("#tmax").val() / 1000;
+        $("#vall").html(varr);
         $.ajax({
             url: "/result/",
             type: "POST",

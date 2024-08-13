@@ -34,6 +34,101 @@ items = [
     {'id': '3', 'name': 'Аномальный перенос с много – членными дробными производными', 'file': 'pdf_files/Аномальный перенос с много – членными дробными производными.pdf'},
 ]
 
+def published_works_list(request):
+    works = [
+        {
+            "url": "(tezis 1) Termiz-2022_Ç¬Γπá½. ó«»α«ßδ á½úÑíαδ ¿ á¡á½¿ºá ßí«α¡¿¬ ¼áΓÑα¿á½«ó αÑß». ¡áπτ¡«-»αá¬. ¬«¡ΣÑαÑ¡µ¿¿.pdf",
+            "name": " АЛГЕБРА ВА АНАЛИЗНИНГ ДОЛЗАРБ МАСАЛАЛАРИ МАВЗУСИДАГИ РЕСПУБЛИКА ИЛМИЙ-АМАЛИЙ АНЖУМАНИ МАТЕРИАЛЛАРИ ТЎПЛАМИ",
+            "type": "(tezis 1) Termiz-2022"
+        },
+        {
+            "url": "(tezis 2) Tashkent-2023.Mathematics, mechanics and intellectual technologies.pdf",
+            "name": "ABSTRACTS OF THE II REPUBLICAN SCIENTIFIC AND PRACTICAL CONFERENCE OF YOUNG SCIENTISTS MATHEMATICS, MECHANICS AND INTELLECTUAL TECHNOLOGIES TASHKENT-2023",
+            "type": "(tezis 2) Tashkent-2023.Mathematics"
+        },
+        {
+            "url": "(tezis 3) Buxoro-24.05.2023_Fiz-mat va mex.dolzarb muam_xalqaro konf.pdf",
+            "name": "АКТУАЛЬНЫЕ ПРОБЛЕМЫ ФИЗИКИ, МАТЕМАТИКИ И МЕХАНИКИ",
+            "type": "(tezis 3) Buxoro-24.05.2023_Fiz-mat"
+        },
+
+        {
+            "url": "(tezis 4) Rahmatullin_ÆÑº¿ßδ-ñ«¬½áñ«ó 27-28 may 2023.pdf",
+            "name": "Издательство «Университет», 2023 Международная научно-практическая конференция «Рахматулинские чтения»",
+            "type": "(tezis 4) Rahmatullin"
+        },
+
+        {
+            "url": "(tezis 5)_VII éßÑ¼¿α¡«ú« è«¡úαÑßßá ¼áΓÑ¼áΓ¿¬«ó Γεα¬ß¬«ú« ¼¿αá_TWMS2023.pdf",
+            "name": "TWO-DIMENSIONAL PROBLEM OF ANOMALOUS TRANSPORT IN A  TWO-ZONE FRACTAL POROUS MEDIUM",
+            "type": "(tezis 5)_VII"
+        },
+
+        {
+            "url": "(tezis 6) _Abstracts of Al-Khwarizmi 2023.pdf",
+            "name": " ACTUAL PROBLEMS OF APPLIED  MATHEMATICS AND INFORMATION TECHNOLOGIES-AL-KHWARIZMI 2023",
+            "type": "(tezis 6) _Abstracts of Al-Khwarizmi 2023"
+        },
+
+        {
+            "url": "(tezis 7) _Qarshi_ 2024.pdf",
+            "name": " AMALIY MATEMATIKANING ZAMONAVIY MUAMMOLARI VA ISTIQBOLLARI",
+            "type": "(tezis 7) _Qarshi_ 2024"
+        },
+
+        {
+            "url": "(tezis 8) _Termiz_ 2024.pdf",
+            "name": "TA’LIM JARAYONIGA RAQAMLI TEXNOLOGIYALAR VA SUN’IY INTELLEKTNI JORIY ETISH ISTIQBOLLARI",
+            "type": "(tezis 8) _Termiz_ 2024"
+        },
+
+        {
+            "url": "ⁿ DGU 38241.pdf",
+            "name": " Ikki zonali fraktal muhitda anomal modda ko’chishi jarayonini sonli tadqiq etish",
+            "type": " DGU 38241"
+        },
+
+        {
+            "url": "ⁿ DGU 38242.pdf",
+            "name": " Adsorbsiya hodisasini hisobga olgan holda anomal modda ko`chishi jarayonlarini sonli modellashtirish",
+            "type": " DGU 38242"
+        },
+
+        {
+            "url": "(maqola) 2023 Mexanika muammolari.pdf",
+            "name": " ЧИСЛЕННОЕ МОДЕЛИРОВАНИЕ ПРОЦЕССА АНОМАЛЬНОГО ПЕРЕНОСА ВЕЩЕСТВА ВО ФРАКТАЛЬНОЙ СРЕДЕ С ПОМОЩЬЮ ДРОБНОГО ДИФФЕРЕНЦИАЛЬНОГО УРАВНЕНИЯ ",
+            "type": " (maqola) 2023 Mexanika muammolari"
+        },
+
+        {
+            "url": "(maqola) 2023_Samdu axborotnoma.pdf",
+            "name": " АНАЛИЗ ПЕРЕНОСА ВЕЩЕСТВА В ПОРИСТОЙ СРЕДЕ НА ОСНОВЕ ДИФФУЗИОННОГО УРАВНЕНИЯ С МНОГО-ЧЛЕННЫМИ ДРОБНЫМИ ПРОИЗВОДНЫМИ ПО ВРЕМЕНИ ",
+            "type": " (maqola) 2023_Samdu axborotnoma"
+        },
+
+        {
+            "url": "(scopus) AIP_Multiterm time fractional diffusion equation.pdf",
+            "name": " Model of Solute Transport in a Porous Medium with Multi-Term Time Fractional Diffusion Equation",
+            "type": " (scopus) AIP_Multiterm time fractional diffusion equation"
+        },
+
+        {
+            "url": "(scopus) B.Khuzhayorov_A.Usmonov_F.B.Kholliev - Numerical Solution of Anomalous Solute in a Two-Zone Fractal Porous Medium.pdf",
+            "name": "Numerical Solution of Anomalous Solute Transport in a Two-Zone Fractal Porous Medium",
+            "type": " (scopus) B.Khuzhayorov_A.Usmonov_F.B.Kholliev - Numerical Solution of Anomalous Solute in a Two-Zone Fractal Porous Medium"
+        },
+
+        {
+            "url": "(scopus) Computation_Anomalous Solute Transport Using Adsorption Effects and the.pdf",
+            "name": "Anomalous Solute Transport Using Adsorption Effects and the Degradation of Solute",
+            "type": " (scopus) Computation_Anomalous Solute Transport Using Adsorption Effects and the"
+        },
+    ]
+    return render(request, 'published_works_list.html', {'works': works})
+
+def api(request):
+    return render(request, 'api.html')
+
 def read_pdf(file_path):
     with pdfplumber.open(file_path) as pdf:
         full_text = ""
