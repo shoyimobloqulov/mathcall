@@ -214,7 +214,7 @@
     <div class="row m-2">
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cm ning X koordinata bo'yicha taqsimoti</h3>
+                <h3 class="card-header">C ning X koordinata bo'yicha taqsimoti</h3>
                 <div class="card-body">
                     <canvas id="distributionChart"></canvas>
                 </div>
@@ -232,7 +232,7 @@
         <hr class="m-1">
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cm ning vaqt bo'yicha dinamikasi</h3>
+                <h3 class="card-header">C ning vaqt bo'yicha dinamikasi</h3>
                 <div class="card-body">
                     <canvas id="exportChart"></canvas>
                 </div>
@@ -261,7 +261,6 @@
             data: data,
             success: function (data) {
                 createChart(data)
-
                 document.getElementById('loader').classList.add('hide-important');
                 $("#content").show();
             }
@@ -375,8 +374,7 @@
         });
 
         // 3. Oxirgi ustunni eksport qilish diagrammasi
-        const lastColumnData = C.map(row => row[row.length - 1]);
-
+        const lastColumnData = C.map(row => row[row.length - 1]).reverse();
         const exportCtx = document.getElementById('exportChart').getContext('2d');
         new Chart(exportCtx, {
             type: 'bar',
