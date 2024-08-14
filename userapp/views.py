@@ -1,3 +1,5 @@
+import os
+from django.conf import settings
 from django.shortcuts import redirect, render # type: ignore
 from django.http import HttpResponse # type: ignore
 from .utils import read_pdf_file
@@ -224,7 +226,6 @@ def answer(request):
 def result(request):
      if request.method == 'POST':
         options = int(request.POST.get('options'))
-        print(options)
         if options == 1:
             C0 = float(request.POST.get('C0', 0.1))
             vm = float(request.POST.get('vm', 1e-4))
@@ -315,24 +316,34 @@ def result(request):
                     Cim4[k] = Cim[k, 4]
                 y = [k * tau for k in range(tmax + 1)]
 
-                # Natijaning oxirgi ustunini Excelga eksport qilish
-                with open('Cm.csv', mode='w', newline='') as Cmfile:
+                if settings.STATIC_ROOT:
+                    static_dir = os.path.join(settings.STATIC_ROOT, 'data')
+                else:
+                    static_dir = os.path.join(settings.STATICFILES_DIRS[0], 'data')
+                    os.makedirs(static_dir, exist_ok=True)
+                Cm_path = os.path.join(static_dir, 'Cm.csv')
+                Cim_path = os.path.join(static_dir, 'Cim.csv')
+                Cm2_path = os.path.join(static_dir, 'C2.csv')
+                Cm3_path = os.path.join(static_dir, 'C3.csv')
+                Cm4_path = os.path.join(static_dir, 'C4.csv')
+
+                with open(Cm_path, mode='w', newline='') as Cmfile:
                     writer = csv.writer(Cmfile, delimiter=';')
                     writer.writerow(list(Cm[tmax, :]))
 
-                with open('Cim.csv', mode='w', newline='') as Cimfile:
+                with open(Cim_path, mode='w', newline='') as Cimfile:
                     writer = csv.writer(Cimfile, delimiter=';')
                     writer.writerow(list(Cim[tmax, :]))
 
-                with open('C2.csv', mode='w', newline='') as Cm2file:
+                with open(Cm2_path, mode='w', newline='') as Cm2file:
                     writer = csv.writer(Cm2file, delimiter=';')
                     writer.writerow(list(Cm2))
 
-                with open('C3.csv', mode='w', newline='') as Cm3file:
+                with open(Cm3_path, mode='w', newline='') as Cm3file:
                     writer = csv.writer(Cm3file, delimiter=';')
                     writer.writerow(list(Cm3))
 
-                with open('C4.csv', mode='w', newline='') as Cm4file:
+                with open(Cm4_path, mode='w', newline='') as Cm4file:
                     writer = csv.writer(Cm4file, delimiter=';')
                     writer.writerow(list(Cm4))
                 return JsonResponse({
@@ -409,22 +420,27 @@ def result(request):
                 C3[k] = C[k, 3]
                 C4[k] = C[k, 4]
 
+            if settings.STATIC_ROOT:
+                static_dir = os.path.join(settings.STATIC_ROOT, 'data')
+            else:
+                static_dir = os.path.join(settings.STATICFILES_DIRS[0], 'data')
+                os.makedirs(static_dir, exist_ok=True)
+            C1_path = os.path.join(static_dir, 'C1.csv')
+            C2_path = os.path.join(static_dir, 'C2.csv')
+            C3_path = os.path.join(static_dir, 'C3.csv')
             # Natijaning oxirgi ustunini Excelga eksport qilish
-            with open('C1.csv', mode='w', newline='') as Cfile:
+            with open(C1_path, mode='w', newline='') as Cfile:
                 writer = csv.writer(Cfile, delimiter=';')
-                writer.writerow(list(C[tmax, :]))
+                writer.writerow(list(C2))
 
-            with open('C2.csv', mode='w', newline='') as Cfile:
+            with open(C2_path, mode='w', newline='') as Cfile:
                 writer = csv.writer(Cfile, delimiter=';')
-                writer.writerow(list(C))
+                writer.writerow(list(C3))
 
-            with open('C3.csv', mode='w', newline='') as Cfile:
+            with open(C3_path, mode='w', newline='') as Cfile:
                 writer = csv.writer(Cfile, delimiter=';')
-                writer.writerow(list(C))
+                writer.writerow(list(C4))
 
-            with open('C4.csv', mode='w', newline='') as Cfile:
-                writer = csv.writer(Cfile, delimiter=';')
-                writer.writerow(list(C))
             return JsonResponse({
                 "C": C.tolist(),
                 'C2': C2.tolist(),
@@ -443,10 +459,8 @@ def export_csv(request, filename):
     response = HttpResponse(output, content_type='text/csv')
     response['Content-Disposition'] = f'attachment; filename={filename}.csv'
     return response
-
 def about(request): 
     return render(request, 'about.html')
-
 def calculate_data(C0, vm, Dm, n, tau, h, tmax, w, tetim, tetm, gam, alpha, bet):
     tet = tetim / tetm
     A = 1 + (w * gamma(2 - alpha) * tau**alpha) / (gam * tetim)
@@ -499,24 +513,35 @@ def calculate_data(C0, vm, Dm, n, tau, h, tmax, w, tetim, tetm, gam, alpha, bet)
         Cim2[k] = Cim[k, 2]
         Cim3[k] = Cim[k, 3]
         Cim4[k] = Cim[k, 4]
-    # Natijaning oxirgi ustunini Excelga eksport qilish
-    with open('Cm.csv', mode='w', newline='') as Cmfile:
+    if settings.STATIC_ROOT:
+        static_dir = os.path.join(settings.STATIC_ROOT, 'data')
+    else:
+        static_dir = os.path.join(settings.STATICFILES_DIRS[0], 'data')
+        os.makedirs(static_dir, exist_ok=True)
+
+    Cm_path = os.path.join(static_dir, 'Cm.csv')
+    Cim_path = os.path.join(static_dir, 'Cim.csv')
+    Cm2_path = os.path.join(static_dir, 'C2.csv')
+    Cm3_path = os.path.join(static_dir, 'C3.csv')
+    Cm4_path = os.path.join(static_dir, 'C4.csv')
+
+    with open(Cm_path, mode='w', newline='') as Cmfile:
         writer = csv.writer(Cmfile, delimiter=';')
         writer.writerow(list(Cm[tmax, :]))
 
-    with open('Cim.csv', mode='w', newline='') as Cimfile:
+    with open(Cim_path, mode='w', newline='') as Cimfile:
         writer = csv.writer(Cimfile, delimiter=';')
         writer.writerow(list(Cim[tmax, :]))
 
-    with open('C2.csv', mode='w', newline='') as Cm2file:
+    with open(Cm2_path, mode='w', newline='') as Cm2file:
         writer = csv.writer(Cm2file, delimiter=';')
         writer.writerow(list(Cm2))
 
-    with open('C3.csv', mode='w', newline='') as Cm3file:
+    with open(Cm3_path, mode='w', newline='') as Cm3file:
         writer = csv.writer(Cm3file, delimiter=';')
         writer.writerow(list(Cm3))
 
-    with open('C4.csv', mode='w', newline='') as Cm4file:
+    with open(Cm4_path, mode='w', newline='') as Cm4file:
         writer = csv.writer(Cm4file, delimiter=';')
         writer.writerow(list(Cm4))
     return {

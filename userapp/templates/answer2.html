@@ -34,7 +34,8 @@
     </form>
 </div>
 <div class="loader p-2 m-2" style="position: relative;">
-    <p>Результаты программы будут объявлены в ближайшее время, пожалуйста, подождите, примерное время ожидания: <span id="vall"></span> минута</p>
+    <p>Результаты программы будут объявлены в ближайшее время, пожалуйста, подождите, примерное время ожидания: <span
+            id="vall"></span> минута</p>
 </div>
 <div class="loader">
     <div id="loader" class="d-flex justify-content-center align-items-center" style="height: 100vh;display: none;">
@@ -229,7 +230,13 @@
                 </div>
             </div>
         </div>
-        
+
+    </div>
+
+    <div class="m-4">
+        <a class="btn btn-primary" href="/static/data/C2.csv">C2 data</a>
+        <a class="btn btn-primary" href="/static/data/C3.csv">C3 data</a>
+        <a class="btn btn-primary" href="/static/data/C4.csv">C4 data</a>
     </div>
 </div>
 
@@ -246,7 +253,7 @@
 
         $(".loader").show();
         $("#form").hide();
-        
+
         $.ajax({
             url: "/result/",
             type: "POST",
@@ -275,6 +282,7 @@
                         label: `C(t = ${tmax} s)`,
                         data: C[tmax],
                         borderColor: 'red',
+                        backgroundColor: 'red',
                         fill: false,
                         tension: 0.1
                     },
@@ -282,6 +290,7 @@
                         label: `C(t = ${2*tmax/3} s)`,
                         data: C[2 * tmax / 3],
                         borderColor: 'blue',
+                        backgroundColor: 'blue',
                         fill: false,
                         tension: 0.1
                     },
@@ -289,6 +298,7 @@
                         label: `C(t = ${tmax/3} s)`,
                         data: C[tmax / 3],
                         borderColor: 'green',
+                        backgroundColor: 'green',
                         fill: false,
                         tension: 0.1
                     }
@@ -327,6 +337,7 @@
                         label: 'C (x = 0.1 m)',
                         data: C2,
                         borderColor: 'purple',
+                        backgroundColor: 'purple',
                         fill: false,
                         tension: 0.1
                     },
@@ -334,6 +345,7 @@
                         label: 'C (x = 0.3 m)',
                         data: C3,
                         borderColor: 'orange',
+                        backgroundColor: 'orange',
                         fill: false,
                         tension: 0.1
                     },
@@ -341,6 +353,7 @@
                         label: 'C (x = 0.5 m)',
                         data: C4,
                         borderColor: 'brown',
+                        backgroundColor: 'brown',
                         fill: false,
                         tension: 0.1
                     }

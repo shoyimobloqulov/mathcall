@@ -34,7 +34,8 @@
     </form>
 </div>
 <div class="loader p-2 m-2" style="position: relative;">
-    <p>Результаты программы будут объявлены в ближайшее время, пожалуйста, подождите, примерное время ожидания: <span id="vall"></span> минута</p>
+    <p>Результаты программы будут объявлены в ближайшее время, пожалуйста, подождите, примерное время ожидания: <span
+            id="vall"></span> минута</p>
 </div>
 <div class="loader">
     <div id="loader" class="d-flex justify-content-center align-items-center" style="height: 100vh;display: none;">
@@ -247,6 +248,15 @@
             </div>
         </div>
     </div>
+    <div class="m-4">
+        <a class="btn btn-primary" href="/static/data/Cm.csv">Cm data</a>
+        <a class="btn btn-primary" href="/static/data/Cim.csv">Cim data</a>
+
+        <a class="btn btn-primary" href="/static/data/C1.csv">C1 data</a>
+        <a class="btn btn-primary" href="/static/data/C2.csv">C2 data</a>
+        <a class="btn btn-primary" href="/static/data/C3.csv">C3 data</a>
+        <a class="btn btn-primary" href="/static/data/C4.csv">C4 data</a>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -262,7 +272,7 @@
         $("#form").hide();
         const varr = $("#tmax").val() / 1000;
         $("#vall").html(varr);
-        
+
         $.ajax({
             url: "/result/",
             type: "POST",
