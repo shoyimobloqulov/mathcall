@@ -11,4 +11,5 @@ urlpatterns = [
     path('result/',views.result,name='result'),
     path('api',views.api,name='api'),
     path('published-works', views.published_works_list, name='published_works_list'),
+    path('code', views.code, name='code')
 ]

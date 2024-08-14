@@ -36,6 +36,9 @@ items = [
     {'id': '3', 'name': 'Аномальный перенос с много – членными дробными производными', 'file': 'pdf_files/Аномальный перенос с много – членными дробными производными.pdf'},
 ]
 
+def code(request):
+    return render(request, 'code.html')
+
 def published_works_list(request):
     works = [
         {

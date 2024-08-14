@@ -1199,11 +1199,13 @@
             width: 100%;
             height: auto;
         }
+
         .overlay-img {
             position: relative;
             width: 100%;
             height: 390px;
         }
+
         .bottom-img {
             width: 100%;
             height: 390px;
@@ -1214,6 +1216,13 @@
             height: 900px;
         }
     </style>
+
+    <!-- Include Highlight.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai.min.css">
+
+    <!-- Include Highlight.js JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
 </head>
 
 <body>
@@ -1235,6 +1244,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/api">Апи</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/code">Код Питон</a>
+                </li>
             </ul>
             <!-- You can add additional navbar items, search form, etc., here -->
         </div>
@@ -1255,6 +1268,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            hljs.highlightAll();
+        });
+    </script>
+
 </body>
 
 </html>
