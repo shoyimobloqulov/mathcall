@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<h3 class="text-center">Список опубликованных работ</h3>
+<h3 class="text-center pt-2">Список опубликованных работ</h3>
 <hr>
 <div class="row m-1">
     {% for work in works %}
-    <div class="col-3 p-2">
-        <h5>{{ work.name }}</h3>
+    <div class="col-md-4 p-2">
+        <h6>{{ work.name }}</h6>
         <p><code>{{work.type }}</code></p>
-        <a href="/static/{{ work.url}}" download="" class="btn btn-outline-primary">Скачать</a>
+        <a href="/static/{{ work.url}}" class="btn btn-outline-primary" download>Скачать</a>
     </div>
     {% endfor %}
 </div>

@@ -2,7 +2,6 @@ import os
 from django.conf import settings
 from django.shortcuts import redirect, render # type: ignore
 from django.http import HttpResponse # type: ignore
-from .utils import read_pdf_file
 import pdfplumber # type: ignore
 import re
 from django.template import loader # type: ignore
@@ -26,19 +25,14 @@ import pandas as pd
 from django.views.decorators.csrf import csrf_exempt
 import logging
 from multiprocessing import Pool
-
 logger = logging.getLogger(__name__)
-
-
 items = [
     {'id': '1', 'name': 'Аномальный перенос вещества в двухзонной фрактальной среде', 'file': 'pdf_files/Аномальный перенос вещества в двухзонной фрактальной среде.pdf'},
     {'id': '2', 'name': 'Аномальный перенос с учетом адсорбционных эффектов и разложения вещества', 'file': 'pdf_files/Аномальный перенос с учетом адсорбционных эффектов и разложения вещества.pdf'},
     {'id': '3', 'name': 'Аномальный перенос с много – членными дробными производными', 'file': 'pdf_files/Аномальный перенос с много – членными дробными производными.pdf'},
 ]
-
 def code(request):
     return render(request, 'code.html')
-
 def published_works_list(request):
     works = [
         {
@@ -130,10 +124,8 @@ def published_works_list(request):
         },
     ]
     return render(request, 'published_works_list.html', {'works': works})
-
 def api(request):
     return render(request, 'api.html')
-
 def read_pdf(file_path):
     with pdfplumber.open(file_path) as pdf:
         full_text = ""
@@ -142,7 +134,6 @@ def read_pdf(file_path):
             full_text += text + "\n"  
 
         return full_text
-
 def extract_math_from_pdf(file_path):
     pdf_text = read_pdf(file_path)
     
@@ -150,21 +141,16 @@ def extract_math_from_pdf(file_path):
     formulas = re.findall(formula_pattern, pdf_text, re.DOTALL)
 
     return formulas
-
 def home(request):
     return render(request, "index.html")
-
 def selects(request):
     return render(request, 'selects.html', {'items': items})
-
 def get_item_description(request, item_id):
     item = next((item for item in items if item['id'] == item_id), None)
     if item:
         file_path = f'static/{item["file"]}'
-        description = read_pdf_file(file_path)
         return render(request, 'item_description.html', {'file_path': file_path})
-    return render(request, 'item_description.html', {'file_path': 'Item not found.'})
-    
+    return render(request, 'item_description.html', {'file_path': 'Item not found.'})   
 def answer(request):
     item_id = request.GET.get('options')
     filename = 'answer.html'
@@ -176,7 +162,7 @@ def answer(request):
             "N": {"name": "Количество интервалов", "value": 100},
             "tau": {"name": "Шаг сетки по направлению", "value": 1},
             "h": {"name": "Шаг сетки по направлению", "value": 0.1},
-            "tmax": {"name": "Максимальное время", "value": 3600},
+            "tmax": {"name": "Максимальное время", "value": 900},
             "w": {"name": "Коэффициент переноса массы", "value": 1e-5},
             "tetim": {"name": "Пористость в immobile зоне", "value": 0.1},
             "tetm": {"name": "Пористость в mobile зоне", "value": 0.4},
@@ -192,7 +178,7 @@ def answer(request):
             "n": {"name": "Количество интервалов", "value": 20},
             "tau": {"name": "Шаг сетки по направлению", "value": 1},
             "h": {"name": "Шаг сетки по направлению", "value": 0.1},
-            "tmax": {"name": "Максимальное время", "value": 2700},
+            "tmax": {"name": "Максимальное время", "value": 900},
             "w": {"name": "Коэффициент переноса массы", "value": 1e-5},
             "tetim": {"name": "Пористость в immobile зоне", "value": 0.1},
             "tetm": {"name": "Пористость в mobile зоне", "value": 0.4},
@@ -209,7 +195,7 @@ def answer(request):
             "N": {"name": "Количество интервалов", "value": 20},
             "tau": {"name": "Шаг сетки по направлению", "value": 0.5},
             "h": {"name": "Шаг сетки по направлению", "value": 0.01},
-            "tmax": {"name": "Максимальное время", "value": 2700},
+            "tmax": {"name": "Максимальное время", "value": 900},
             "gamma": {"name": "Дробная производная по координате", "value": 2},
             "alfa": {"name": "Дробная производная по времени", "value": 1},
             "beta1": {"name": "Дробная производная по времени:", "value": 0.7},
@@ -224,7 +210,6 @@ def answer(request):
     template = loader.get_template(filename)
     context = {'description': description, 'item_id': item_id}
     return HttpResponse(template.render(context, request))
-
 @csrf_exempt
 def result(request):
      if request.method == 'POST':
