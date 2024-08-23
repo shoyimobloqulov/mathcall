@@ -8,8 +8,9 @@
 {% block content %}
 <div class="container">
     <h1 class="mb-4">API-документация</h1>
-    <span class="badge rounded-pill text-bg-primary">POST</span><h2> {{ request.scheme }}://{{ request.get_host }}/result/</h2>
+    <span class="bg-primary rounded-pill text-white p-2">POST</span><h2> {{ request.scheme }}://{{ request.get_host }}/result/</h2>
     <a href="/static/var.docx" download>Данные, которые можно отправить</a>
+    <p>Oтправьте <code>options</code> в качестве значений на URL-адрес, если это применимо.</p>
 </div>
 
 {% endblock %}
