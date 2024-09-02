@@ -3,7 +3,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %}
-Домашняя страница
+Аномальный перенос вещества в двухзонной фрактальной среде
 {% endblock %}
 
 {% block content %}
@@ -216,7 +216,7 @@
     <div class="row m-2">
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cm ning X koordinata bo'yicha taqsimoti</h3>
+                <h3 class="card-header">Профили концентрации См по х</h3>
                 <div class="card-body">
                     <canvas id="CmChart"></canvas>
                 </div>
@@ -225,7 +225,7 @@
 
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cim ning X koordinata bo'yicha taqsimoti</h3>
+                <h3 class="card-header">Профили концентрации Сiм по х</h3>
                 <div class="card-body">
                     <canvas id="CimChart"></canvas>
                 </div>
@@ -234,7 +234,7 @@
         <hr class="m-1">
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cm ning vaqt bo'yicha dinamikasi</h3>
+                <h3 class="card-header">Динамики концентрации Сm по времени</h3>
                 <div class="card-body">
                     <canvas id="CmTimeChart"></canvas>
                 </div>
@@ -242,7 +242,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cim ning vaqt bo'yicha dinamikasi</h3>
+                <h3 class="card-header">Динамики концентрации Сim по времени</h3>
                 <div class="card-body">
                     <canvas id="CimTimeChart"></canvas>
                 </div>
@@ -250,19 +250,25 @@
         </div>
     </div>
     <div class="m-4">
-        <a class="btn btn-primary" href="/static/data/Cm.csv">Cm data</a>
-        <a class="btn btn-primary" href="/static/data/Cim.csv">Cim data</a>
+        <a class="btn btn-primary" href="/static/data/Cm.csv">Данные См</a>
+        <a class="btn btn-primary" href="/static/data/Cim.csv">Данные Cim</a>
 
-        <a class="btn btn-primary" href="/static/data/C1.csv">C1 data</a>
-        <a class="btn btn-primary" href="/static/data/C2.csv">C2 data</a>
-        <a class="btn btn-primary" href="/static/data/C3.csv">C3 data</a>
-        <a class="btn btn-primary" href="/static/data/C4.csv">C4 data</a>
+        <a class="btn btn-primary" href="/static/data/C1.csv">Данные C1 </a>
+        <a class="btn btn-primary" href="/static/data/C2.csv">Данные C2 </a>
+        <a class="btn btn-primary" href="/static/data/C3.csv">Данные C3 </a>
+        <a class="btn btn-primary" href="/static/data/C4.csv">Данные C4 </a>
     </div>
+    <br><br>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    window.addEventListener('beforeunload', function (event) {
+        // Browser doimo "returnValue" xususiyatini talab qiladi
+        event.preventDefault();
+        event.returnValue = '';
+    });
     $("#content").hide();
     $(".loader").hide();
 
@@ -427,7 +433,7 @@
                     borderWidth: 1,
                     fill: false
                 }, {
-                    label: 'Cim (x=0.5 m)',
+                    label: ' (x=0.5 m)',
                     data: data.Cim4,
                     borderColor: 'rgba(153, 102, 255, 1)',
                     backgroundColor: 'rgba(153, 102, 255, 1)',

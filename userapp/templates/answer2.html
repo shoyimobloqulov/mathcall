@@ -3,7 +3,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %}
-Домашняя страница
+Аномальный перенос с много – членными дробными производными
 {% endblock %}
 
 {% block content %}
@@ -215,7 +215,7 @@
     <div class="row m-2">
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">C ning X koordinata bo'yicha taqsimoti</h3>
+                <h3 class="card-header">Профили концентрации См по х</h3>
                 <div class="card-body">
                     <canvas id="distributionChart"></canvas>
                 </div>
@@ -224,7 +224,7 @@
 
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">C ning vaqt bo'yicha taqsimoti</h3>
+                <h3 class="card-header">Динамики концентрации С по времени</h3>
                 <div class="card-body">
                     <canvas id="dynamicChart"></canvas>
                 </div>
@@ -234,15 +234,21 @@
     </div>
 
     <div class="m-4">
-        <a class="btn btn-primary" href="/static/data/C2.csv">C2 data</a>
-        <a class="btn btn-primary" href="/static/data/C3.csv">C3 data</a>
-        <a class="btn btn-primary" href="/static/data/C4.csv">C4 data</a>
+        <a class="btn btn-primary" href="/static/data/C2.csv">Данные C2</a>
+        <a class="btn btn-primary" href="/static/data/C3.csv">Данные C3</a>
+        <a class="btn btn-primary" href="/static/data/C4.csv">Данные C4</a>
     </div>
+    <br><br>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    window.addEventListener('beforeunload', function (event) {
+        // Browser doimo "returnValue" xususiyatini talab qiladi
+        event.preventDefault();
+        event.returnValue = '';
+    });
     $("#content").hide();
     $(".loader").hide();
 
@@ -310,13 +316,13 @@
                     x: {
                         title: {
                             display: true,
-                            text: 'X koordinata (m)'
+                            text: 'X координата (м)'
                         }
                     },
                     y: {
                         title: {
                             display: true,
-                            text: 'Kontsentratsiya (m^3/m^3)'
+                            text: 'Концентрация (м^3/м^3)'
                         }
                     }
                 }
@@ -365,13 +371,13 @@
                     x: {
                         title: {
                             display: true,
-                            text: 'Vaqt (s)'
+                            text: 'Время t(s)'
                         }
                     },
                     y: {
                         title: {
                             display: true,
-                            text: 'Kontsentratsiya (m^3/m^3)'
+                            text: 'Концентрация (м^3/м^3)'
                         }
                     }
                 }

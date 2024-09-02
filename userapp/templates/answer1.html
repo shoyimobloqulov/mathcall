@@ -3,7 +3,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %}
-Домашняя страница
+Аномальный перенос с учетом адсорбционных эффектов и разложения вещества
 {% endblock %}
 
 {% block content %}
@@ -215,7 +215,7 @@
     <div class="row m-2">
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cm ning X koordinata bo'yicha taqsimoti</h3>
+                <h3 class="card-header">Профили концентрации См по х</h3>
                 <div class="card-body">
                     <canvas id="chartCm"></canvas>
                 </div>
@@ -224,7 +224,7 @@
 
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cim ning X koordinata bo'yicha taqsimoti</h3>
+                <h3 class="card-header">Профили концентрации Сiм по х</h3>
                 <div class="card-body">
                     <canvas id="chartCim"></canvas>
                 </div>
@@ -233,7 +233,7 @@
         <hr class="m-1">
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cm ning vaqt bo'yicha dinamikasi</h3>
+                <h3 class="card-header">Динамики концентрации Сm по времени</h3>
                 <div class="card-body">
                     <canvas id="chartCmTime"></canvas>
                 </div>
@@ -241,7 +241,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <h3 class="card-header">Cim ning vaqt bo'yicha dinamikasi</h3>
+                <h3 class="card-header">Динамики концентрации Сim по времени</h3>
                 <div class="card-body">
                     <canvas id="chartCimTime"></canvas>
                 </div>
@@ -249,19 +249,25 @@
         </div>
     </div>
     <div class="m-4">
-        <a class="btn btn-primary" href="/static/data/Cm.csv">Cm data</a>
-        <a class="btn btn-primary" href="/static/data/Cim.csv">Cim data</a>
+        <a class="btn btn-primary" href="/static/data/Cm.csv">Данные см</a>
+        <a class="btn btn-primary" href="/static/data/Cim.csv">Данные CIM</a>
 
-        <a class="btn btn-primary" href="/static/data/C1.csv">C1 data</a>
-        <a class="btn btn-primary" href="/static/data/C2.csv">C2 data</a>
-        <a class="btn btn-primary" href="/static/data/C3.csv">C3 data</a>
-        <a class="btn btn-primary" href="/static/data/C4.csv">C4 data</a>
+        <a class="btn btn-primary" href="/static/data/C1.csv">Данные C1</a>
+        <a class="btn btn-primary" href="/static/data/C2.csv">Данные C2</a>
+        <a class="btn btn-primary" href="/static/data/C3.csv">Данные C3</a>
+        <a class="btn btn-primary" href="/static/data/C4.csv">Данные C4</a>
     </div>
+    <br><br>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    window.addEventListener('beforeunload', function (event) {
+        // Browser doimo "returnValue" xususiyatini talab qiladi
+        event.preventDefault();
+        event.returnValue = '';
+    });
     $("#content").hide();
     $(".loader").hide();
 
@@ -359,13 +365,13 @@
                     x: {
                         title: {
                             display: true,
-                            text: 'Coordinate (m)'
+                            text: 'Координата (м)'
                         }
                     },
                     y: {
                         title: {
                             display: true,
-                            text: 'Concentration (m³/m³)'
+                            text: 'Концентрация (m³/m³)'
                         }
                     }
                 }

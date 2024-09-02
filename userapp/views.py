@@ -26,6 +26,10 @@ from django.views.decorators.csrf import csrf_exempt
 import logging
 from multiprocessing import Pool
 logger = logging.getLogger(__name__)
+
+def introduction(request):
+    return render(request, 'introduction.html')
+
 items = [
     {'id': '1', 'name': 'Аномальный перенос вещества в двухзонной фрактальной среде', 'file': 'pdf_files/Аномальный перенос вещества в двухзонной фрактальной среде.pdf'},
     {'id': '2', 'name': 'Аномальный перенос с учетом адсорбционных эффектов и разложения вещества', 'file': 'pdf_files/Аномальный перенос с учетом адсорбционных эффектов и разложения вещества.pdf'},

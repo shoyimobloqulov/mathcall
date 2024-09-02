@@ -1215,6 +1215,16 @@
             width: 100%;
             height: 900px;
         }
+        .footer {
+            position: fixed !important;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .img-doc {
+            box-shadow: 7px 7px 7px grey;    
+        }
     </style>
 
     <!-- Include Highlight.js CSS -->
@@ -1228,7 +1238,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
         <a class="navbar-brand" href="/">ПРОГРАММНО </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="   collapse" data-bs-target="#navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -1247,13 +1257,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/code">Код Питон</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/introduction">Введение</a>
+                </li>
             </ul>
         </div>
     </nav>
     {% block content %}
     <!-- Content will be injected here -->
     {% endblock %}
-    <footer class="bg-dark mt-2 copyright l-0 footer">
+    <hr>
+    <footer class="bg-dark copyright l-0 footer">
         <!-- Copyright -->
         <div class="text-center p-3 text-white">
             © 2024 Авторское право:
@@ -1272,7 +1287,6 @@
             hljs.highlightAll();
         });
     </script>
-
 </body>
 
 </html>
